@@ -123,7 +123,7 @@ class Banco:
     
     def render_juros(self, numero: str, taxa: float) -> None:
         conta = self.procurar(numero)
-        if isinstance(conta, ContaPoupança):
+        if isinstance(conta, ContaPoupanca):
             conta.render_juros(taxa)
 
     def render_bonus(self, numero:str) -> None:
