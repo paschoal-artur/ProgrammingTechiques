@@ -33,9 +33,8 @@ class ContaPoupança(Conta):
     def __init__(self, numero:str):
         super().__init__(numero)
 
-    def render_juros(self, taxa:float)->None:
+    def render_juros(self, taxa:float) -> None:
         self.creditar(self.get_saldo() * taxa)
-
 
 class Banco:
 
@@ -47,20 +46,40 @@ class Banco:
         self.__contas.append(conta)
 
     def procurar(self, numero:str)-> Conta:
-        self.__contas = [conta for conta in self.__contas if conta.get_numero() == numero]
+        for conta in self.__contas:
+            if conta.get_numer() == numero:
+                return conta
+        return None 
 
     def creditar (self, numero:str ,valor:float) -> None :
-        self.__numero = [conta.creditar(valor) for conta in self.__contas if conta.get_numero() == numero]
+        for conta in self.__contas:
+            if conta.get_numero() == numero:
+                conta.creditar(valor)
+                return  
 
     def debitar(self, numero:str, valor:float) -> None:
-        self.__debitar = [conta.debitar(valor) for conta in self.__contas if conta.get_numero() == numero]
+        for conta in self.__contas:
+            if conta.get_numero() == numero:
+                conta.debitar(valor)
+                return 
 
     def saldo(self, numero:str) -> float:
-        self.__numero = [conta.get_saldo() for conta in self.__contas if conta.get_numero() == numero]
+        for conta in self.__contas:
+            if conta.get_numero() == numero:
+                return conta.get_saldo()
 
     def transferir (self, origem:str, destino:str, valor:float) -> None:
-        self.__origem = [conta.debitar(valor) for conta in self.__contas if conta.get_numero() == origem]
-    
+        conta_origem = None 
+        conta_destino = None
+        for conta in self.__contas:
+            if conta.get_numero() == origem:
+                conta_origem = conta
+            if conta.get_numero() == destino:
+                conta_destino = conta
+        if conta_origem and conta_destino:
+            conta_origem.debitar(valor)
+            conta_destino.creditar(valor)
+
     def render_juros(self, numero: str, taxa: float) -> None:
         conta = self.procurar(numero)
         if isinstance(conta, ContaPoupança):

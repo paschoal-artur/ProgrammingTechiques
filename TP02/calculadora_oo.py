@@ -2,10 +2,12 @@
 class Calculadora:
     def __init__(self):
         pass
+
     def memoria(self):
         global acumulador
         acumulador = 0
         return acumulador
+
     def soma(self, operando_a, operando_b):
         if operando_a is None:
             soma_a = operando_b + self.acumulador

@@ -9,7 +9,7 @@ class ContaAbstrata(ABC):
     def creditar(self, valor:float) -> None:
         self.__saldo += valor
 
-    @abstractmethod 
+    @abstractmethod
     def debitar (self, valor: float) -> None:
         self.__saldo -= valor
 
@@ -81,11 +81,13 @@ class Banco:
 
     def get_taxa_imposto(self) -> float:
         return self.__taxa_i
+
     def set_taxa_imposto(self, taxa:float) -> None:
         self.__taxa_i = taxa
 
     def get_taxa_poupanca(self) -> float:
         return self.__taxa_p
+
     def set_taxa_poupanca(self, taxa:float) -> None:
         self.__taxa_p = taxa
 

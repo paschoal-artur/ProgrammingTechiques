@@ -11,12 +11,13 @@ def terminal():
         print("[3]-Transferir ")
         print("[4]-Saldo ")
         print("[5]-Sair ")
-        opcao = input("Digite a opcao: ")
+        opcao = int(input("Digite a opcao: "))
 
         if opcao == 0:
             num_conta = input("Digite o numero da conta a ser criada: ")
             conta = Conta(num_conta)
             sisbanco.cadastrar(conta)
+
         elif opcao == 1:
             num_conta  = input("Digite o numero da conta:")
             conta = sisbanco.procurar(num_conta)
@@ -25,6 +26,7 @@ def terminal():
                 break
             valor = float(input("Digite o valor a ser creditado: "))
             sisbanco.creditar(num_conta, valor)
+
         elif opcao == 2:
             num_conta  = input("Digite o numero da conta:")
             conta = sisbanco.procurar(num_conta)
@@ -33,6 +35,7 @@ def terminal():
                 break
             valor = float(input("Digite o valor a ser debitado: "))
             sisbanco.debitar(num_conta, valor)
+
         elif opcao == 3:
             num_conta_origem  = input("Digite o numero da conta de origem:")
             conta_origem = sisbanco.procurar(num_conta_origem)
@@ -46,7 +49,18 @@ def terminal():
                 break 
             valor = float(input("Digite o valor a ser transferido: "))
             sisbanco.transferir(num_conta_origem, num_conta_destino, valor)
+
         elif opcao == 4:
+            num_conta  = input("Digite o numero da conta:")
+            conta = sisbanco.procurar(num_conta)
+            if conta == None:
+                print("Conta nao encontrada")
+                break
+            print(f"Saldo: {sisbanco.saldo(num_conta)}")
+
+        elif opcao == 5:
+            print("Saindo...")
+            break
 
 if __name__ == "__main__":
     terminal()
