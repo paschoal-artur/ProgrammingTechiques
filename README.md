@@ -1,2 +1,2 @@
 # TP01
-Repositório para a tarefa 1 de técnicas 
+## Repositório para os exercícios da disciplina Técnicas de Programação
